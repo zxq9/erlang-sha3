@@ -12,7 +12,7 @@
 %%% Craig Everett:    https://gitlab.com/zxq9
 
 -module(sha3).
--export([hash_init/1, hash_update/2, hash_final/1, hash/2, kek/2, shake128/2, shake256/2]).
+-export([hash_init/1, hash_update/2, hash_final/1, hash/2, kek/2, kek/3, shake128/2, shake256/2]).
 
 
 -on_load(init/0).
@@ -100,7 +100,14 @@ hash(384, Message) -> kek(382, Message);
 hash(512, Message) -> kek(512, Message);
 hash(_, _)         -> error(badarg).
 
-kek(OutputBitLength, Message) ->
+
+kek(Length, Message) ->
+    kek(Length, Message, keccak).
+
+kek(OutputBitLength, Message, keccak) ->
+    Capacity = 2 * OutputBitLength,
+    keccak(Capacity, Message, <<>>, OutputBitLength);
+kek(OutputBitLength, Message, nist) ->
     Capacity = 2 * OutputBitLength,
     keccak(Capacity, Message, <<2#01:2>>, OutputBitLength).
 
@@ -171,7 +178,7 @@ shake(ShakeNumber, Message, OutputBitLength) ->
 %% Capacity must be strictly less than 1600
 %% @end
 
-keccak(Capacity = _c, Message, Delimiter, OutputBitLength) ->
+keccak(Capacity, Message, Delimiter, OutputBitLength) ->
     BitRate       = 1600 - Capacity,
     PaddedMessage = pad(Message, Delimiter, BitRate),
     InitialSponge = <<0:1600>>,
