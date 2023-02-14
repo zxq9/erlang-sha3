@@ -4,6 +4,7 @@ ebin
 deps
 priv
 *.o
+*.d
 *.beam
 *.plt
 *.swp
