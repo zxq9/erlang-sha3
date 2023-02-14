@@ -9,6 +9,7 @@ priv
 *.swp
 *.html
 *.png
+*.pyc
 edoc-info
 stylesheet.css
 
