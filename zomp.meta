@@ -1,0 +1,17 @@
+{a_email,"zxq9@zxq9.com"}.
+{author,"Craig Everett"}.
+{c_email,"tetsuya.suzuki@gmail.com"}.
+{copyright,"SUZUKI Tetsuya"}.
+{deps,[]}.
+{desc,"SHA-3 and Keccak in NIF and native Erlang."}.
+{file_exts,[]}.
+{key_name,none}.
+{license,"Apache-2.0"}.
+{modules,[]}.
+{name,"Erlang SHA-3/Keccak"}.
+{package_id,{"otpr","sha3",{0,1,3}}}.
+{prefix,none}.
+{repo_url,"https://github.com/zxq9/erlang-sha3"}.
+{tags,["aeternity","sha3","blockchain","keccak"]}.
+{type,lib}.
+{ws_url,[]}.
